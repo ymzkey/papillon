@@ -13,8 +13,7 @@ class Genelaator(threading.Thread):
 
     def run(self):
         while True:
-            rand = (lambda: (random.randint(0,100) - 50.0)/100)
-            seed = self.i/100.0
+            seed = self.i / 100.0
             self.i = self.i + 1
             x = -0.5 + seed
             y = (seed*seed) % 2.0
@@ -33,7 +32,7 @@ class Printer(threading.Thread):
         def putDot():
             glPointSize(10)
             glColor3d(1, .3, .3);
-            glBegin(GL_LINE)
+            glBegin(GL_LINES)
             if len(self.l) > 0:
                 doto = self.l[0]
             ind = 0
