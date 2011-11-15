@@ -17,7 +17,8 @@ class Genelaator(threading.Thread):
             for i in range(0,10):
                 x = rand()
                 y = rand()
-                unit = {"x":x,"fitness":y}
+                z = rand()
+                unit = {"x1":x,"x2":y,"fitness":z}
                 units.append(unit)
             self.l.append(units)
             while len(self.l) >= 20:
@@ -36,8 +37,8 @@ class Printer(threading.Thread):
                 units = self.queue.pop(0)
                 glBegin(GL_POINTS)
                 for unit in units:
-                    x = unit["x"] * 10
-                    y = unit["fitness"] * 10
+                    x = unit["x1"] * 10 -0.9
+                    y = unit["x2"] * 10 -0.9
                     glVertex2d(x,y)
                 glEnd()
 

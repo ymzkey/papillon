@@ -39,9 +39,10 @@ class random_compute(evocop):
     def construct(self):
         self.num_unit = 100
         def newunit():
-            x = random.random()
-            fitness = self.fitness(x)
-            return {'x':x,'fitness':fitness}
+            x1 = random.random()
+            x2 = random.random()
+            fitness = self.fitness(x1,x2)
+            return {'x1':x1,'x2':x2,'fitness':fitness}
 
         self.units = []
         self.result = []
@@ -52,17 +53,20 @@ class random_compute(evocop):
     def destruct(self):
         return self.units
 
-    def fitness(self,x):
-        return x*x
+    def fitness(self,x1,x2):
+        return x1 + x2 
 
     def update(self):
         for unit in self.units:
-            x = random.random()
-            f = self.fitness(x)
+            x1 = random.random()
+            x2 = random.random()
+
+            f = self.fitness(x1,x2)
             if unit['fitness'] < f:
                 pass
             else:
-                unit['x'] = x
+                unit['x1'] = x1
+                unit['x2'] = x2
                 unit['fitness'] = f
 
         self.queue.append(copy.deepcopy(self.units))
