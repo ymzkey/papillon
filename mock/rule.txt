@@ -1,0 +1,24 @@
+- 命名規則
+名称                 規約                          例
+module名             lowercase                     hamegg.py
+class名	             CapWords                      class HamEgg(object):…
+exception名          CapWords                      class HamEggException(Exception):…
+関数名               lowercase_with_underscores    def ham_egg():…
+関数名(既存に従う)   mixedCase                     def hamEgg():…
+メソッド名           lowercase_with_underscores    def ham_egg(self):…
+インスタンス変数名   lowercase_with_underscores    self.ham_egg = None
+変数名               lowercase_with_underscores    ham_egg = None
+定数                 UPPER_CASE_WITH_UNDERSCORES   HAM_EGG = "ham_egg"
+
+-- 変数名
+--- 否定語をつけない(is_not_success -> is_fail)
+--- 一般的でない(事前知識なしに理解できない)略語はもちいない
+--- イテレータのための変数はi,jなど慣用的なものを用いる
+
+- 即値は書き下さない。
+- ローカル変数を再利用しない
+- 出力のための引数を使わない(参照渡しで出力を得ない)
+- ファイル行頭につけるモジュールに関する説明以外ではコメントをつけない
+- インデントはemacsのpython modeでtabを押したサイズに合わせる。
+- 引数などは", "で区切る
+- 演算子の前後には半角スペースをいれる
