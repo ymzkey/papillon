@@ -6,7 +6,7 @@ import copy
 import sys
 import threading
 
-class unit():
+class Unit():
     def __init__(self,rank,max,min):
         def _rand(max,min):
            return min + random.random() * (max - min)
@@ -17,7 +17,7 @@ class unit():
             self.x.append(xn)
         self.fit = float("inf")
         
-class evocop(): #threading.Thread):
+class Evocop(): #threading.Thread):
     def __init__(self,costfunction):
         #threading.Thread.__init__(self)
         self.numrep = 100
@@ -57,12 +57,12 @@ class evocop(): #threading.Thread):
     def logging(self):
         self.log.append(copy.deepcopy(self.units))
 
-class randunit(unit):
+class Randunit(unit):
     def __init__(self,rank,max,min):
         unit.__init__(self,rank,max,min)
         self.r = random.random
 
-class random_compute(evocop):
+class Random_compute(evocop):
     def __init__(self,costfunction):
  
         evocop.__init__(self,costfunction)
