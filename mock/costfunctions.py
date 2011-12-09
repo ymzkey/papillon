@@ -1,16 +1,12 @@
+#cost functions most be child of libpapillon.BaseCostfunction
+#the eval method most be define in chile class
+ 
 import random
+import libpapillon
 
-class BaseCostfunction():
+class doublex(libpapillon.BaseCostfunction):
     def __init__(self,rank):
-        self.domain = (0,0)
-        self.rank = rank
-
-    def eval(*arg):
-        pass
-
-class doublex(BaseCostfunction):
-    def __init__(self,rank):
-        BaseCostfunction.__init__(self,rank)
+        libpapillon.BaseCostfunction.__init__(self,rank)
         self.domain = (0,100)
 
     def eval(self,*arg):
