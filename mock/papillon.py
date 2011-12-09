@@ -12,8 +12,8 @@ def log_to_string(log):
         history += "\n"
     return history
         
-c = costfunctions.doublex(2)
-e = evolutions.RandomCompute(100,100,c)
-log = e.run()
-print log_to_string(log)
+c = costfunctions.doublex(3)
+e = evolutions.RandomCompute(10,100,c)
+e.run() 
+print e.to_string()
 

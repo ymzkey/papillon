@@ -22,6 +22,17 @@ class BaseUnit():
             self.x.append(xn)
         self.fit = float("inf")
 
+    def to_list(self):
+        def flatten(l):
+            if type(l) == list:
+                if len(l) == 1:
+                    return flatten(l.pop(0))
+                else:
+                    return flatten(l.pop(0)) + flatten(l)
+            else:
+                return [l]
+        return flatten([self.fit,self.x])
+
 class BaseEvoluton(): #threading.Thread):
     def __init__(self,max_unit,max_repeat,costfunction):
         #threading.Thread.__init__(self)
@@ -45,6 +56,7 @@ class BaseEvoluton(): #threading.Thread):
         def unit_to_list(unit):
             return flatten([unit.fit,unit.x])
 
+        return 0
         output = []
         for units in self.log:
             list_units = []
@@ -70,4 +82,15 @@ class BaseEvoluton(): #threading.Thread):
     
     def logging(self):
         self.log.append(copy.deepcopy(self.units))
+
+    def to_string(self):
+        history = ""
+        for age in self.log:
+            for unit in age:
+                for data  in unit.to_list():
+                    history += "%(data)f"%{'data':data}
+                    history += " "
+                history += "\n"
+            history += "\n"
+        return history
 
