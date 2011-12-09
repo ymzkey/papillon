@@ -1,10 +1,20 @@
 import evolutions
 import costfunctions
-import printer
 import time
-c = costfunctions.doublex(3)
-e = evolutions.random_compute(c)
+
+def log_to_string(log):
+    history = ""
+    for age in log:
+        for unit in age:
+            for data  in unit:
+                history += "%(data)f"%{'data':data}
+                history += " "
+            history += "\n"
+        history += "\n"
+    return history
+        
+c = costfunctions.doublex(2)
+e = evolutions.RandomCompute(100,100,c)
 log = e.run()
-print log
-p = printer.Printer(log)
-p.start()
+print log_to_string(log)
+

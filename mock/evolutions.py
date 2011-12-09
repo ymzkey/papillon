@@ -6,50 +6,63 @@ import copy
 import sys
 import threading
 
-class Unit():
+class BaseUnit():
     def __init__(self,rank,max,min):
         def _rand(max,min):
-           return min + random.random() * (max - min)
+           return float(min + random.random() * (max - min))
 
         self.x = []
         for n in range(0,rank):
             xn = _rand(max,min)
             self.x.append(xn)
         self.fit = float("inf")
+
+class RandomUnit(BaseUnit):
+    def __init__(self,rank,max,min):
+        BaseUnit.__init__(self,rank,max,min)
         
-class Evocop(): #threading.Thread):
-    def __init__(self,costfunction):
+class BaseEvoluton(): #threading.Thread):
+    def __init__(self,max_unit,max_repeat,costfunction):
         #threading.Thread.__init__(self)
-        self.numrep = 100
-        self.numunit = 10
-        self.repcount = 0
+        self.max_repeat = max_repeat
+        self.max_unit = max_unit
+        self.count_repeat = 0
         self.log = []
         self.units = []
         self.costfunction = costfunction
 
     def destruct(self):
-        que = []
+        def flatten(l):
+            if type(l) == list:
+                if len(l) == 1:
+                    return flatten(l.pop(0))
+                else:
+                    return flatten(l.pop(0)) + flatten(l)
+            else:
+                return [l]
+
+        def unit_to_list(unit):
+            return flatten([unit.fit,unit.x])
+
+        output = []
         for units in self.log:
-            us = []
+            list_units = []
             for unit in units:
-                x1 = unit.x[0]
-                x2 = unit.x[2]
-                fitness = unit.fit
-                us.append({"x1":x1,"x2":x2,"fitness":fitness})
-                que.append(us)
-        return que
+                list_units.append(unit_to_list(unit))
+            output.append(list_units)
+        return output
 
     def update(self):
         print 'no method: %(name)s'%{"name":self.update.__name__}
         exit
 
     def is_end(self):
-       return self.repcount > self.numrep
+       return self.count_repeat > self.max_repeat
 
     def run(self):
         self.construct()
         while not self.is_end():
-            self.repcount = self.repcount + 1
+            self.count_repeat = self.count_repeat + 1
             self.update()
             self.logging()
         return self.destruct()
@@ -57,21 +70,16 @@ class Evocop(): #threading.Thread):
     def logging(self):
         self.log.append(copy.deepcopy(self.units))
 
-class Randunit(unit):
-    def __init__(self,rank,max,min):
-        unit.__init__(self,rank,max,min)
-        self.r = random.random
 
-class Random_compute(evocop):
-    def __init__(self,costfunction):
- 
-        evocop.__init__(self,costfunction)
+class RandomCompute(BaseEvoluton):
+    def __init__(self,max_unit,max_repeat,costfunction):
+        BaseEvoluton.__init__(self,max_unit,max_repeat,costfunction)
 
     def construct(self):
         self.units = []
-        for n in range(0,self.numunit):
+        for n in range(0,self.max_unit):
             self.units.append(
-                randunit(
+                RandomUnit(
                     self.costfunction.rank,
                     self.costfunction.domain[1],
                     self.costfunction.domain[0]
@@ -81,15 +89,15 @@ class Random_compute(evocop):
     def update(self):
         newage = []
         for unit in self.units:
-            sun  = randunit(
+            sun  = RandomUnit(
                 self.costfunction.rank,
                 self.costfunction.domain[1],
                 self.costfunction.domain[0]
                 )
             sun.fit = self.costfunction.eval(*(sun.x))
             if unit.fit < sun.fit:
-                newage.append(unit)
+                newage.append(copy.deepcopy(unit))
             else:
-                newage.append(sun)
+                newage.append(copy.deepcopy(sun))
         self.units = newage
             

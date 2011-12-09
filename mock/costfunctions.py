@@ -1,6 +1,6 @@
 import random
 
-class costfunction():
+class BaseCostfunction():
     def __init__(self,rank):
         self.domain = (0,0)
         self.rank = rank
@@ -8,11 +8,10 @@ class costfunction():
     def eval(*arg):
         pass
 
-
-class doublex(costfunction):
+class doublex(BaseCostfunction):
     def __init__(self,rank):
-        costfunction.__init__(self,rank)
-        domain = (-100,100)
+        BaseCostfunction.__init__(self,rank)
+        self.domain = (0,100)
 
     def eval(self,*arg):
         sum = 0
