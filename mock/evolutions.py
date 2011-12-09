@@ -4,7 +4,6 @@
 
 import random
 import copy
-import sys
 import threading
 import libpapillon
 

@@ -1,7 +1,6 @@
 #cost functions most be child of libpapillon.BaseCostfunction
 #the eval method most be define in chile class
  
-import random
 import libpapillon
 
 class doublex(libpapillon.BaseCostfunction):

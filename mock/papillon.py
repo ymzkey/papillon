@@ -1,6 +1,5 @@
 import evolutions
 import costfunctions
-import time
 
 def log_to_string(log):
     history = ""
