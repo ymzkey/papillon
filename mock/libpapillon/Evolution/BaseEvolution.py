@@ -1,3 +1,5 @@
+NUM_MAX = float("INF")
+
 import copy
 
 class BaseEvolution():
@@ -49,6 +51,14 @@ class BaseEvolution():
     
     def logging(self):
         self.log.append(copy.deepcopy(self.units))
+
+    def get_best(self):
+        best_unit = None
+        best_fitness = NUM_MAX
+        for unit in self.units:
+            if unit.fit <= best_fitness:
+                best_unit = copy.deepcopy(unit)
+        return best_unit
 
     def to_string(self):
         history = ""

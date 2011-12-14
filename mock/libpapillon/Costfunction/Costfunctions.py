@@ -5,7 +5,7 @@ import BaseCostfunction
 class doublex(BaseCostfunction.BaseCostfunction):
     def __init__(self,rank):
         BaseCostfunction.BaseCostfunction.__init__(self,rank)
-        self.domain = (0,100)
+        self.domain = (-100,100)
 
     def eval(self,*arg):
         sum = 0

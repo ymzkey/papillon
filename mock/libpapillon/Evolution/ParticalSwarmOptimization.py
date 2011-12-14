@@ -23,14 +23,6 @@ class ParticalSwarmOptimization(BaseEvolution.BaseEvolution):
                     )
                 )
 
-    def get_best(self):
-        best_unit = None
-        best_fitness = NUM_MAX
-        for unit in self.units:
-            if unit.fit <= best_fitness:
-                best_unit = copy.deepcopy(unit)
-        return best_unit
-            
     def update(self):
         new_age = []
         best_all_unit = self.get_best();

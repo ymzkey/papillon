@@ -1,10 +1,16 @@
-import evolutions
-import costfunctions
-        
-c = costfunctions.x(3)
-e = evolutions.ParticalSwarmOptimization(3,100,c,0.5,0.5,0.5)
-#e = evolutions.RandomCompute(10,100,c)
+import sys
+sys.path.append("./libpapillon") 
+
+import Costfunction
+import Evolution
+       
+c = Costfunction.costfunctions.x(20)
+#e = Evolution.ParticalSwarmOptimization.ParticalSwarmOptimization(5,1000,c,.8,1.0,1.0)
+e = Evolution.RandomCompute.RandomCompute(5,1000,c)
 e.run() 
 
-print e.to_string()
+#print e.to_string()
+#print "\n"
+print e.get_best().fit
+
 
