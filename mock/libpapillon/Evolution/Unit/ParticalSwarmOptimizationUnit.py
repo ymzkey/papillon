@@ -6,9 +6,9 @@ NUM_MAX = float("INF")
 import BaseUnit
 
 class ParticalSwarmOptimizationUnit(BaseUnit.BaseUnit):
-    def __init__(self,rank,max,min):
+    def __init__(self,rank,range_max,range_min):
         self.INITIALI_SPEED = 0.0
-        BaseUnit.BaseUnit.__init__(self,rank,max,min)
+        BaseUnit.BaseUnit.__init__(self,rank,range_max,range_min)
         self.v = [] # This is not a abbreviation.  The speed value call "v"
         self.best = {"x":[],"fit":NUM_MAX}
         

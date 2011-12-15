@@ -42,14 +42,11 @@ class ParticalSwarmOptimization(BaseEvolution.BaseEvolution):
                 sun.v[index] = w*unit.v[index] + c1*r()*(unit.best["x"][index] - unit.x[index]) + c2*r()*(best_all_unit.x[index] - unit.x[index])
 
             sun.fit = self.costfunction.eval(*(sun.x))
-            if unit.fit < sun.fit and False: # everytime update.
-                new_age.append(copy.deepcopy(unit))
+            if sun.fit < unit.best["fit"]:
+                sun.best["x"]   = copy.deepcopy(sun.x)
+                sun.best["fit"] = copy.deepcopy(sun.fit)
             else:
-                if sun.fit < unit.best["fit"]:
-                    sun.best["x"]   = copy.deepcopy(sun.x)
-                    sun.best["fit"] = copy.deepcopy(sun.fit)
-                else:
-                    sun.best["x"]   = copy.deepcopy(unit.best["x"])
-                    sun.best["fit"] = copy.deepcopy(unit.best["fit"])
-                new_age.append(copy.deepcopy(sun))
-        self.units = new_age
+                sun.best["x"]   = copy.deepcopy(unit.best["x"])
+                sun.best["fit"] = copy.deepcopy(unit.best["fit"])
+            new_age.append(copy.deepcopy(sun))
+        self.units = copy.deepcopy(new_age)
