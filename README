@@ -1,11 +1,8 @@
 *What'this
-- Paillon is a real metaheuristic method framework.
-
-*Shuold  implement these methods
-- set parametor
-- generate units
-- step
-
-* how to 
-- "run" method is simple execution. ececuting setp automatically to the last.
-- "next" method is a sequential execution.
+- Paillon is a real number Swarm Intelligence program.
+** pappilon.py
+- entry point
+** libpapillon
+*** Evolutions
+**** Units
+*** Costfunctions
