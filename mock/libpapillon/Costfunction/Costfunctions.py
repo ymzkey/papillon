@@ -5,12 +5,12 @@ import BaseCostfunction
 class doublex(BaseCostfunction.BaseCostfunction):
     def __init__(self,rank):
         BaseCostfunction.BaseCostfunction.__init__(self,rank)
-        self.domain = (-100,100)
+        self.domain = (-50,50)
 
     def eval(self,*arg):
         sum = 0
         for n in range(0,self.rank):
-            sum = sum + arg[n] * arg[n]
+            sum += (arg[n] * arg[n])
         return sum
 
 class x(BaseCostfunction.BaseCostfunction):
