@@ -12,8 +12,20 @@ class BaseEvolution():
         self.units = []
         self.costfunction = costfunction
 
+    def construct(self):
+        self.units = []
+        for n in range(0,self.max_unit):
+            self.units.append(
+                self.unit_class(
+                    self.costfunction.rank,
+                    self.costfunction.domain[1],
+                    self.costfunction.domain[0]
+                    )
+                )
+            
     def destruct(self):
         return 0
+
 
     def update(self):
         print 'no method: %(name)s'%{"name":self.update.__name__}
@@ -28,7 +40,7 @@ class BaseEvolution():
             self.count_repeat = self.count_repeat + 1
             self.update()
             self.logging()
-            print self.get_best().fit #ki wo tsukete!
+            #print self.get_best().fit #ki wo tsukete!
         return self.destruct()
     
     def logging(self):

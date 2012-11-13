@@ -11,12 +11,13 @@ class ParticalSwarmOptimization(BaseEvolution.BaseEvolution):
         self.w = w
         self.c1 = c1
         self.c2 = c2
+        self.unit_class = Unit.ParticalSwarmOptimizationUnit.ParticalSwarmOptimizationUnit
 
     def construct(self):
         self.units = []
         for n in range(0,self.max_unit):
             self.units.append(
-                Unit.ParticalSwarmOptimizationUnit.ParticalSwarmOptimizationUnit(
+                self.unit_class(
                     self.costfunction.rank,
                     self.costfunction.domain[1],
                     self.costfunction.domain[0]

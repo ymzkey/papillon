@@ -8,21 +8,10 @@ class RealCodedGA(BaseEvolution.BaseEvolution):
     def __init__(self,max_unit,max_repeat,costfunction,mutation_rate):
         BaseEvolution.BaseEvolution.__init__(self,max_unit,max_repeat,costfunction)
         self.mutation_rate = mutation_rate
+        self.unit_class = Unit.RealCodedGAUnit.RealCodedGAUnit
         self.alpha = []
         for n in range(0,self.costfunction.rank):
             self.alpha.append(0.05)
-
-    def construct(self):
-        self.units = []
-        for n in range(0,self.max_unit):
-            self.units.append(
-                Unit.RealCodedGAUnit.RealCodedGAUnit(
-                    self.costfunction.rank,
-                    self.costfunction.domain[1],
-                    self.costfunction.domain[0]
-                    )
-                )
-
 
     def update(self):
         def brend_crossover(unit_a_xn,unit_b_xn,alpha):
