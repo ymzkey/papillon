@@ -1,14 +1,14 @@
 import sys
 sys.path.append("./libpapillon") 
 
+import Costfunction.Costfunctions
 import Costfunction
 import Evolution
-       
 
-c = Costfunction.costfunctions.doublex(20)
-e = Evolution.ParticalSwarmOptimization.ParticalSwarmOptimization(30,10000,c,0.4,0.99,0.99)
-#e = Evolution.RandomCompute.RandomCompute(20,500,c)
-#e = Evolution.RealCodedGA.RealCodedGA(20,500,c,0.2)
+c = Costfunction.Costfunctions.doublex(5)
+e = Evolution.ParticalSwarmOptimization.ParticalSwarmOptimization(100,200,c,0.2,0.3,0.9)
+#e = Evolution.RandomCompute.RandomCompute(100,50000,c)
+#e = Evolution.RealCodedGA.RealCodedGA(100,500,c,0.05)
 e.run() 
 
 #print e.to_string()
